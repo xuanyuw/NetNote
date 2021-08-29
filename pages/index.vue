@@ -1,21 +1,32 @@
 <template>
   <div class="container">
     <CBox
-      v-bind="mainStyles[colorMode]"
       d="flex"
       w="100vw"
       h="100vh"
       flex-dir="column"
       justify-content="center"
     >
-      <CHeading text-align="center" mb="4"> NetNote </CHeading>
+      <CHeading text-align="center" mb="4" size="2xl"> NetNote </CHeading>
       <CFlex justify="center" direction="column" align="center">
-        <CInputGroup w="50vw">
+        <CInputGroup w="50vw" mb="10">
           <CInput placeholder="Type a topic name here" size="lg" />
           <CInputRightElement>
             <CIconButton aria-label="Search database" icon="arrow-forward" />
           </CInputRightElement>
         </CInputGroup>
+        <Cbox mb="4">
+          <CHeading size="lg" mb="4">
+            Or choose from the following parent topics</CHeading
+          >
+          <CList text-align="center">
+            <CListItem v-for="item in ParentTopicKeys" :key="item">
+              <NuxtLink :to="'/' + item">
+                {{ ParentTopics[item].Title }}
+              </NuxtLink>
+            </CListItem>
+          </CList>
+        </Cbox>
       </CFlex>
     </CBox>
   </div>
@@ -28,54 +39,41 @@ import {
   CFlex,
   CHeading,
   CInput, CInputGroup, CInputRightElement,
+  CList, CListItem
 } from '@chakra-ui/vue'
 
+import parentTopics from '../content/ptopics_menu.json';
+
 export default {
-  name: 'App',
+  // name: 'App',
   components: {
     CBox,
     CIconButton,
     CFlex,
     CHeading,
     CInput, CInputGroup, CInputRightElement,
+    CList, CListItem
   },
-  inject: ['$chakraColorMode', '$toggleColorMode'],
+    transition: {
+    name: 'home',
+    mode: 'out-in'
+  },
   data () {
     return {
-      showModal: false,
-      mainStyles: {
-        dark: {
-          bg: 'gray.700',
-          color: 'whiteAlpha.900'
-        },
-        light: {
-          bg: 'white',
-          color: 'gray.900'
-        }
-      }
-    }
-  },
-  computed: {
-    colorMode () {
-      return this.$chakraColorMode()
-    },
-    theme () {
-      return this.$chakraTheme()
-    },
-    toggleColorMode () {
-      return this.$toggleColorMode
-    }
-  },
-  methods: {
-    showToast () {
-      this.$toast({
-        title: 'Account created.',
-        description: "We've created your account for you.",
-        status: 'success',
-        duration: 10000,
-        isClosable: true
-      })
+      ParentTopicKeys: Object.keys(parentTopics),
+      ParentTopics: parentTopics,
     }
   }
 }
 </script>
+
+<style>
+.home-enter-active,
+.home-leave-active {
+  transition: opacity 0.2s;
+}
+.home-enter,
+.home-leave-active {
+  opacity: 0;
+}
+</style>

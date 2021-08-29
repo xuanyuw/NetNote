@@ -1,0 +1,34 @@
+{
+    "machine_learning": {
+        "Title": "Machine Learning",
+        "related_ptopics":{
+            
+
+        },
+        "Children": [
+            "machine learning 1", 
+            "machine learning 2", 
+            "machine learning 3"]
+    },
+    "brain_oscillation": {
+        "Title": "Brain Oscillation",
+        "Children": [
+            "brain oscillation 1", 
+            "brain oscillation 2", 
+            "brain oscillation 3"]
+    },
+    "spatial_exploration": {
+        "Title": "Spatial Exploration",
+        "Children": [
+            "spatial exploration 1", 
+            "spatial exploration 2", 
+            "spatial exploration 3"]
+    },
+    "decision_making": {
+        "Title": "Decision Making",
+        "Children": [
+            "decision making 1", 
+            "decision making 2", 
+            "decision making 3"]
+    }
+}
