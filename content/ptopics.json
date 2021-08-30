@@ -1,0 +1,50 @@
+{
+    "machine_learning": {
+        "Title": "Machine Learning",
+        "Children": {
+            "machine_learning_1":20, 
+            "machine_learning_2":3, 
+            "machine_learning_3":1
+        },
+        "RelatedPTopics": {
+            "brain_oscillation":1, 
+            "decision_making": 5
+        }
+    },
+    "brain_oscillation": {
+        "Title": "Brain Oscillation",
+        "Children": {
+            "brain_oscillation_1":2, 
+            "brain_oscillation_2":3, 
+            "brain_oscillation_3":10
+        },
+        "RelatedPTopics": {
+            "machine_learning":1, 
+            "spatial_exploration": 3
+        }
+    },
+    "spatial_exploration": {
+        "Title": "Spatial Exploration",
+        "Children": {
+            "spatial_exploration_1":8, 
+            "spatial_exploration_2":3, 
+            "spatial_exploration_3":20
+        },
+        "RelatedPTopics": {
+            "brain_oscillation":3,
+            "decision_making":9
+        }
+    },
+    "decision_making": {
+        "Title": "Decision Making",
+        "Children": {
+            "decision_making_1":20, 
+            "decision_making_2":3, 
+            "decision_making_3":1
+        },
+        "RelatedPTopics": {
+            "machine_learning": 5,
+            "spatial_exploration":9
+        }
+    }
+}

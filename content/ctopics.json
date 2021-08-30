@@ -3,7 +3,8 @@
         "related_ptopics"{
             "machine_learning": 5,
             "decision_making": 2,
-            "brain_oscillation":1,
+            "brain_oscillation":1
+            
         }
     }
 }
