@@ -1,6 +1,18 @@
 
 # Data Linking Design
 
+## Objectives
+
+- no file-file connection 
+  - too messy
+  - little needs for the user cases
+- only show the connection up to the child topic level
+  - in each child topic page, show:
+    - related parent topics 
+    - child topics of each respective parent topic
+    - related notes in each child topic 
+  - can consider make the content in the page foldable (do not display the filenames first)
+
 ## want to achieve
 
 1. classify file (author, ctopics, and ptopics) using meta data before each note
@@ -25,14 +37,14 @@ create an alias for each note, use this alias to create connection.
 key = underscored lowercase name
 
 - Title (for display)
-  - list of note names under this ctopic
-  - related ctopics
-    - ctopic name
+- list of note names under this ctopic
+- related ctopics
+  - ctopic name
+    - list of aliases of related notes
+- related ptopics
+  - ptopic name
+    - related ctopic name in this ptopic
       - list of aliases of related notes
-  - related ptopics
-    - ptopic name
-      - related ctopic name in this ptopic
-        - list of aliases of related notes
 
 ### ptopic
 

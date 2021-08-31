@@ -1,10 +1,64 @@
 {
     "machine_learning_1": {
-        "related_ptopics"{
-            "machine_learning": 5,
-            "decision_making": 2,
-            "brain_oscillation":1
-            
+        "Title": "Machine Learning 1",
+        "Members": [ 
+            "ml1_note1",
+            "ml1_note2",
+            "ml1_note3"
+        ],
+        "related_ptopics": {
+            "machine_learning": {
+                "machine_learning_2": [
+                    "ml2_note1",
+                    "ml2_note2",
+                    "ml2_note3"
+                ],
+                "machine_learning_3": [
+                    "ml2_note1",
+                    "ml2_note2"
+                ]
+            },
+            "decision_making": {
+                "decision_making_1": [
+                    "dm1_note1"
+                ],
+                "decision_making_2": [
+                    "dm2_note1"
+                ]
+            },
+            "brain_oscillation":{
+                "brain_oscillation_1": [
+                    "bo_note1"
+                ]
+            }
+        }
+    },
+
+    "machine_learning_2": {
+        "Title": "Machine Learning 2",
+        "Members": [ 
+            "ml2_note1",
+            "ml2_note2",
+            "ml2_note3",
+            "ml2_note4"
+        ],
+        "related_ptopics": {
+            "machine_learning": {
+                "machine_learning_1": [
+                    "ml1_note1",
+                    "ml1_note2"
+                ]
+            },
+            "decision_making": {
+                "decision_making_2": [
+                    "dm2_note1"
+                ]
+            },
+            "spatial_exploration":{
+                "spatial_exploration_1": [
+                    "se_note1"
+                ]
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ import {
   CList, CListItem
 } from '@chakra-ui/vue'
 
-import parentTopics from '../content/ptopics_menu.json';
+import parentTopics from '../content/ptopics.json';
 
 
 export default {
