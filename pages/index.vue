@@ -21,7 +21,7 @@
           >
           <CList text-align="center">
             <CListItem v-for="item in ParentTopicKeys" :key="item">
-              <NuxtLink :to="'/' + item">
+              <NuxtLink :to="'/parent_topics/' + item">
                 {{ ParentTopics[item].Title }}
               </NuxtLink>
             </CListItem>

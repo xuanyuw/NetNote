@@ -12,8 +12,13 @@
         {{ ParentTopic.Title }}
       </CHeading>
       <CList text-align="center">
-        <CListItem v-for="item in ParentTopic.Children" :key="item">
-          {{ item }}
+        <CListItem
+          v-for="item in Object.keys(ParentTopic.Children)"
+          :key="item"
+        >
+          <NuxtLink :to="'/children_topics/' + item">
+            {{ ChildrenTopic[item]['Title'] }}
+          </NuxtLink>
         </CListItem>
       </CList>
     </CBox>
@@ -35,7 +40,8 @@ import {
   CList, CListItem
 } from '@chakra-ui/vue'
 
-import parentTopics from '../content/ptopics.json';
+import parentTopics from '../../content/ptopics.json';
+import childrenTopics from '../../content/ctopics.json';
 
 
 export default {
@@ -48,6 +54,7 @@ export default {
   data() {
       return {
           ParentTopic: parentTopics[this.$route.params.ptopic],
+          ChildrenTopic: childrenTopics
       };
   },
 }

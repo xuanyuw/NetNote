@@ -1,6 +1,7 @@
 {
     "machine_learning_1": {
         "Title": "Machine Learning 1",
+        "Parent": "machine_learning",
         "Members": [ 
             "ml1_note1",
             "ml1_note2",
@@ -36,6 +37,35 @@
 
     "machine_learning_2": {
         "Title": "Machine Learning 2",
+        "Parent": "machine_learning",
+        "Members": [ 
+            "ml2_note1",
+            "ml2_note2",
+            "ml2_note3",
+            "ml2_note4"
+        ],
+        "related_ptopics": {
+            "machine_learning": {
+                "machine_learning_1": [
+                    "ml1_note1",
+                    "ml1_note2"
+                ]
+            },
+            "decision_making": {
+                "decision_making_2": [
+                    "dm2_note1"
+                ]
+            },
+            "spatial_exploration":{
+                "spatial_exploration_1": [
+                    "se_note1"
+                ]
+            }
+        }
+    },
+    "machine_learning_3": {
+        "Title": "Machine Learning 3",
+        "Parent": "machine_learning",
         "Members": [ 
             "ml2_note1",
             "ml2_note2",
