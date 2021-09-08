@@ -1,26 +1,48 @@
 <template>
   <div class="container">
-    <CBox
-      d="flex"
-      w="100vw"
-      h="90vh"
-      flex-dir="column"
-      justify-content="center"
-      text-align="center"
-    >
-      <CHeading text-align="center" mb="4" size="2xl">
+    <CBox text-align="center" h="40vh" bg="gray.50">
+      <CHeading text-align="center" line-height="40vh" size="2xl">
         {{ ChildTopic.Title }}
       </CHeading>
-      <c-grid w="1000px" template-columns="repeat(3, 1fr)" gap="6">
-        <c-box w="100%" h="10">
+    </CBox>
+    <CBox
+      d="flex"
+      w="90vw"
+      h="60vh"
+      flex-dir="column"
+      justify-content="center"
+      align-items="center"
+      text-align="center"
+      m="10"
+    >
+      <c-grid
+        template-columns="repeat(3, 3fr)"
+        gap="10"
+        justify-content="center"
+        text-align="center"
+        overflow="auto"
+      >
+        <c-box w="25vw" overflow="auto">
           <CList text-align="center">
             <CListItem v-for="item in ChildTopic.Members" :key="item">
               {{ item }}
             </CListItem>
           </CList>
         </c-box>
-        <c-box w="100%" h="10" />
-        <c-box w="100%" h="10" />
+        <c-box w="25vw" overflow="auto">
+          <CList text-align="center">
+            <CListItem v-for="item in ChildTopic.Members" :key="item">
+              {{ item }}
+            </CListItem>
+          </CList>
+        </c-box>
+        <c-box w="25vw" overflow="auto">
+          <CList text-align="center">
+            <CListItem v-for="item in ChildTopic.Members" :key="item">
+              {{ item }}
+            </CListItem>
+          </CList>
+        </c-box>
       </c-grid>
     </CBox>
     <CBox
