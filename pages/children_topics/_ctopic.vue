@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" w="100vw">
     <CBox text-align="center" h="40vh" bg="gray.50">
       <CHeading text-align="center" line-height="40vh" size="2xl">
         {{ ChildTopic.Title }}
@@ -7,7 +7,6 @@
     </CBox>
     <CBox
       d="flex"
-      w="90vw"
       h="60vh"
       flex-dir="column"
       justify-content="center"
