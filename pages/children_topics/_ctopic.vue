@@ -16,32 +16,48 @@
     >
       <c-grid
         template-columns="repeat(3, 3fr)"
-        gap="10"
+        template-rows="repeat(5, 1fr)"
+        gap="3"
         justify-content="center"
         text-align="center"
         overflow="auto"
       >
-        <c-box w="25vw" overflow="auto">
-          <CList text-align="center">
-            <CListItem v-for="item in ChildTopic.Members" :key="item">
-              {{ item }}
-            </CListItem>
-          </CList>
-        </c-box>
-        <c-box w="25vw" overflow="auto">
-          <CList text-align="center">
-            <CListItem v-for="item in ChildTopic.Members" :key="item">
-              {{ item }}
-            </CListItem>
-          </CList>
-        </c-box>
-        <c-box w="25vw" overflow="auto">
-          <CList text-align="center">
-            <CListItem v-for="item in ChildTopic.Members" :key="item">
-              {{ item }}
-            </CListItem>
-          </CList>
-        </c-box>
+        <c-grid-item row-span="1">
+          <CHeading text-align="center" size="m"> Members </CHeading>
+        </c-grid-item>
+        <c-grid-item row-span="1">
+          <CHeading text-align="center" size="m"> Members </CHeading>
+        </c-grid-item>
+        <c-grid-item row-span="1">
+          <CHeading text-align="center" size="m"> Members </CHeading>
+        </c-grid-item>
+        <c-grid-item row-span="4">
+          <c-box w="25vw" overflow="auto" row-span="2">
+            <CList text-align="center">
+              <CListItem v-for="item in ChildTopic.Members" :key="item">
+                {{ item }}
+              </CListItem>
+            </CList>
+          </c-box>
+        </c-grid-item>
+        <c-grid-item row-span="4">
+          <c-box w="25vw" overflow="auto" row-span="4">
+            <CList text-align="center">
+              <CListItem v-for="item in ChildTopic.Members" :key="item">
+                {{ item }}
+              </CListItem>
+            </CList>
+          </c-box>
+        </c-grid-item>
+        <c-grid-item row-span="4">
+          <c-box w="25vw" overflow="auto" row-span="4">
+            <CList text-align="center">
+              <CListItem v-for="item in ChildTopic.Members" :key="item">
+                {{ item }}
+              </CListItem>
+            </CList>
+          </c-box>
+        </c-grid-item>
       </c-grid>
     </CBox>
     <CBox
