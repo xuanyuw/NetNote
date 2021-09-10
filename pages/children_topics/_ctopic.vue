@@ -5,34 +5,31 @@
         {{ ChildTopic.Title }}
       </CHeading>
     </CBox>
-    <CBox
-      d="flex"
-      h="60vh"
-      flex-dir="column"
-      justify-content="center"
-      align-items="center"
-      text-align="center"
-      m="10"
-    >
+    <CBox d="flex" h="60vh" flex-dir="column" text-align="center" m="10">
       <c-grid
         template-columns="repeat(3, 3fr)"
-        template-rows="repeat(5, 1fr)"
-        gap="3"
+        gap="2vw"
         justify-content="center"
         text-align="center"
         overflow="auto"
       >
-        <c-grid-item row-span="1">
-          <CHeading text-align="center" size="m"> Members </CHeading>
+        <c-grid-item row-span="1" mb="0">
+          <CHeading text-align="left" size="lg"> Member Notes</CHeading>
         </c-grid-item>
         <c-grid-item row-span="1">
-          <CHeading text-align="center" size="m"> Members </CHeading>
+          <CHeading text-align="left" size="lg"> Authors </CHeading>
         </c-grid-item>
         <c-grid-item row-span="1">
-          <CHeading text-align="center" size="m"> Members </CHeading>
+          <CHeading text-align="left" size="lg"> Related topics </CHeading>
         </c-grid-item>
-        <c-grid-item row-span="4">
-          <c-box w="25vw" overflow="auto" row-span="2">
+        <c-grid-item
+          row-span="6"
+          overflow="auto"
+          border="1px"
+          border-radius="md"
+          border-color="gray.200"
+        >
+          <c-box w="25vw" m="3">
             <CList text-align="center">
               <CListItem v-for="item in ChildTopic.Members" :key="item">
                 {{ item }}
@@ -40,22 +37,52 @@
             </CList>
           </c-box>
         </c-grid-item>
-        <c-grid-item row-span="4">
-          <c-box w="25vw" overflow="auto" row-span="4">
+        <c-grid-item
+          row-span="6"
+          overflow="auto"
+          border="1px"
+          border-radius="md"
+          border-color="gray.200"
+        >
+          <c-box w="25vw" m="3">
             <CList text-align="center">
-              <CListItem v-for="item in ChildTopic.Members" :key="item">
+              <CListItem v-for="item in ChildTopic.RelatedAuthors" :key="item">
                 {{ item }}
               </CListItem>
             </CList>
           </c-box>
         </c-grid-item>
-        <c-grid-item row-span="4">
-          <c-box w="25vw" overflow="auto" row-span="4">
-            <CList text-align="center">
-              <CListItem v-for="item in ChildTopic.Members" :key="item">
-                {{ item }}
-              </CListItem>
-            </CList>
+        <c-grid-item
+          row-span="6"
+          overflow="auto"
+          border="1px"
+          border-radius="md"
+          border-color="gray.200"
+        >
+          <c-box w="25vw" m="3">
+            <c-box>
+              <c-tabs variant="soft-rounded" variant-color="green">
+                <c-tab-list>
+                  <c-tab
+                    v-for="item in Object.keys(ChildTopic.RelatedPtopics)"
+                    :key="item"
+                    >{{ ParentTopics[item]['Title'] }}</c-tab
+                  >
+                </c-tab-list>
+
+                <c-tab-panels>
+                  <c-tab-panel>
+                    <p>one!</p>
+                  </c-tab-panel>
+                  <c-tab-panel>
+                    <p>two!</p>
+                  </c-tab-panel>
+                  <c-tab-panel>
+                    <p>three!</p>
+                  </c-tab-panel>
+                </c-tab-panels>
+              </c-tabs>
+            </c-box>
           </c-box>
         </c-grid-item>
       </c-grid>
@@ -78,10 +105,11 @@
 import {
   CBox,
   CHeading,
-  CList, CListItem
+  CList, CListItem,
+  CTabs, CTabList, CTabPanels, CTab, CTabPanel
 } from '@chakra-ui/vue'
 
-// import parentTopics from '../content/ptopics.json';
+import parentTopics from '../../content/ptopics.json';
 import childrenTopics from '../../content/ctopics.json';
 
 
@@ -90,12 +118,13 @@ export default {
   components: {
     CBox,
     CHeading,
-    CList, CListItem
+    CList, CListItem,
+    CTabs, CTabList, CTabPanels, CTab, CTabPanel
   },
   data() {
       return {
-
-          ChildTopic: childrenTopics[this.$route.params.ctopic]
+          ChildTopic: childrenTopics[this.$route.params.ctopic],
+          ParentTopics: parentTopics
       };
   },
 }
