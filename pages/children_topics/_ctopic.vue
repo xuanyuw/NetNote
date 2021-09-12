@@ -49,7 +49,9 @@
           <c-box w="25vw" m="3">
             <CList text-align="center">
               <CListItem v-for="item in ChildTopic.RelatedAuthors" :key="item">
-                <NuxtLink :to="'/authors/' + item">{{ item }}</NuxtLink>
+                <NuxtLink :to="'/authors/' + item">{{
+                  Authors[item].Name
+                }}</NuxtLink>
               </CListItem>
             </CList>
           </c-box>
@@ -124,7 +126,8 @@ import {
 
 import parentTopics from '../../content/ptopics.json';
 import childrenTopics from '../../content/ctopics.json';
-import CollapseItem from '../../components/CollapseItem.vue'
+import CollapseItem from '../../components/CollapseItem.vue';
+import authors from '../../content/authors.json';
 
 
 export default {
@@ -141,6 +144,7 @@ export default {
           ChildTopic: childrenTopics[this.$route.params.ctopic],
           ChildrenTopics: childrenTopics,
           ParentTopics: parentTopics,
+          Authors: authors,
           show: true
       };
   },

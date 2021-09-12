@@ -112,8 +112,18 @@
                           <c-accordion-item>
                             <c-accordion-header>
                               <c-box flex="1" text-align="left">
-                                {{ ChildrenTopics[ct]['Title'] }}
+                                <CHeading text-align="left" size="sm">{{
+                                  ChildrenTopics[ct]['Title']
+                                }}</CHeading>
+                                <NuxtLink :to="'/children_topics/' + ct">
+                                  <c-text
+                                    fontSize="xs"
+                                    text-decoration="underline;"
+                                    >> Go to this topic
+                                  </c-text></NuxtLink
+                                >
                               </c-box>
+
                               <c-accordion-icon />
                             </c-accordion-header>
                             <c-accordion-panel pb="4">
