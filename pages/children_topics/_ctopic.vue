@@ -28,6 +28,7 @@
           border="1px"
           border-radius="md"
           border-color="gray.200"
+          h="45vh"
         >
           <c-box w="25vw" m="3">
             <CList text-align="center">
@@ -61,7 +62,7 @@
         >
           <c-box w="25vw" m="3">
             <c-box>
-              <c-tabs variant="soft-rounded" variant-color="green">
+              <c-tabs variant="soft-rounded" variant-color="gray" mt="4" mb="4">
                 <c-tab-list>
                   <c-tab
                     v-for="item in Object.keys(ChildTopic.RelatedPtopics)"
@@ -71,14 +72,24 @@
                 </c-tab-list>
 
                 <c-tab-panels>
-                  <c-tab-panel>
-                    <p>one!</p>
-                  </c-tab-panel>
-                  <c-tab-panel>
-                    <p>two!</p>
-                  </c-tab-panel>
-                  <c-tab-panel>
-                    <p>three!</p>
+                  <c-tab-panel
+                    v-for="item in Object.keys(ChildTopic.RelatedPtopics)"
+                    :key="item"
+                  >
+                    <CList text-align="center" mt="4">
+                      <CListItem
+                        v-for="ct in Object.keys(
+                          ChildTopic.RelatedPtopics[item]
+                        )"
+                        :key="ct"
+                      >
+                        <CollapseItem
+                          :ct="ct"
+                          :item="item"
+                          :this-topic="$route.params.ctopic"
+                        ></CollapseItem>
+                      </CListItem>
+                    </CList>
                   </c-tab-panel>
                 </c-tab-panels>
               </c-tabs>
@@ -106,11 +117,12 @@ import {
   CBox,
   CHeading,
   CList, CListItem,
-  CTabs, CTabList, CTabPanels, CTab, CTabPanel
+  CTabs, CTabList, CTabPanels, CTab, CTabPanel,
 } from '@chakra-ui/vue'
 
 import parentTopics from '../../content/ptopics.json';
 import childrenTopics from '../../content/ctopics.json';
+import CollapseItem from '../../components/CollapseItem.vue'
 
 
 export default {
@@ -119,12 +131,15 @@ export default {
     CBox,
     CHeading,
     CList, CListItem,
-    CTabs, CTabList, CTabPanels, CTab, CTabPanel
+    CTabs, CTabList, CTabPanels, CTab, CTabPanel,
+    CollapseItem
   },
   data() {
       return {
           ChildTopic: childrenTopics[this.$route.params.ctopic],
-          ParentTopics: parentTopics
+          ChildrenTopics: childrenTopics,
+          ParentTopics: parentTopics,
+          show: true
       };
   },
 }
