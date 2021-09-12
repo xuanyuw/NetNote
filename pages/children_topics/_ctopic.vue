@@ -1,7 +1,7 @@
 <template>
   <div class="container" w="100vw">
-    <CBox text-align="center" h="40vh" bg="gray.50">
-      <CHeading text-align="center" line-height="40vh" size="2xl">
+    <CBox text-align="center" h="30vh" bg="gray.50">
+      <CHeading text-align="center" line-height="30vh" size="2xl">
         {{ ChildTopic.Title }}
       </CHeading>
     </CBox>
@@ -28,7 +28,7 @@
           border="1px"
           border-radius="md"
           border-color="gray.200"
-          h="45vh"
+          h="50vh"
         >
           <c-box w="25vw" m="3">
             <CList text-align="center">
@@ -44,11 +44,12 @@
           border="1px"
           border-radius="md"
           border-color="gray.200"
+          h="50vh"
         >
           <c-box w="25vw" m="3">
             <CList text-align="center">
               <CListItem v-for="item in ChildTopic.RelatedAuthors" :key="item">
-                {{ item }}
+                <NuxtLink :to="'/authors/' + item">{{ item }}</NuxtLink>
               </CListItem>
             </CList>
           </c-box>
@@ -59,6 +60,7 @@
           border="1px"
           border-radius="md"
           border-color="gray.200"
+          h="50vh"
         >
           <c-box w="25vw" m="3">
             <c-box>
