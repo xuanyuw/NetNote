@@ -119,7 +119,7 @@
                                   <c-text
                                     fontSize="xs"
                                     text-decoration="underline;"
-                                    >> Go to this topic
+                                    >> Go to keyword page
                                   </c-text></NuxtLink
                                 >
                               </c-box>

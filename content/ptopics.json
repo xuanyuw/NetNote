@@ -9,7 +9,8 @@
     "RelatedPTopics": {
       "brain_oscillation": 1,
       "decision_making": 5
-    }
+    },
+    "RelatedAuthors": ["author_1", "author_2", "author_3"]
   },
   "brain_oscillation": {
     "Title": "Brain Oscillation",
