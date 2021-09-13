@@ -139,6 +139,10 @@ export default {
     CTabs, CTabList, CTabPanels, CTab, CTabPanel,
     CollapseItem
   },
+  transition: {
+    name: 'home',
+    mode: 'out-in'
+  },
   data() {
       return {
           ChildTopic: childrenTopics[this.$route.params.ctopic],

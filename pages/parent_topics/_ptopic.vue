@@ -94,6 +94,10 @@ export default {
     CHeading,
     CList, CListItem
   },
+  transition: {
+    name: 'home',
+    mode: 'out-in'
+  },
   data() {
       return {
           ParentTopic: parentTopics[this.$route.params.ptopic],

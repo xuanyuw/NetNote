@@ -26,6 +26,7 @@
               </NuxtLink>
             </CListItem>
           </CList>
+          <NuxtLink :to="'/authors/create_author'"> Create an author </NuxtLink>
         </Cbox>
       </CFlex>
     </CBox>
@@ -70,10 +71,10 @@ export default {
 <style>
 .home-enter-active,
 .home-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.1s;
 }
 .home-enter,
 .home-leave-active {
-  opacity: 0;
+  opacity: 0.3;
 }
 </style>

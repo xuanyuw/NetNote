@@ -23,7 +23,6 @@
         <c-grid-item
           row-span="1"
           col-span="2"
-          overflow="auto"
           border="1px"
           border-color="gray.200"
         >
@@ -35,7 +34,6 @@
         <c-grid-item
           row-span="1"
           col-span="2"
-          overflow="auto"
           border="1px"
           border-color="gray.200"
         >
@@ -47,7 +45,6 @@
         <c-grid-item
           row-span="1"
           col-span="2"
-          overflow="auto"
           border="1px"
           border-color="gray.200"
         >
@@ -58,10 +55,10 @@
             {{ thisAuthor.CitationNumber }}</CHeading
           >
         </c-grid-item>
-        <c-grid-item overflow="auto" col-span="3" text-align="left" m="4">
+        <c-grid-item col-span="3" text-align="left" m="4">
           <CHeading text-align="left" size="lg"> Research Interest: </CHeading>
         </c-grid-item>
-        <c-grid-item overflow="auto" col-span="3" text-align="left" m="4">
+        <c-grid-item col-span="3" text-align="left" m="4">
           <CHeading text-align="left" size="lg"> Related Notes: </CHeading>
         </c-grid-item>
         <c-grid-item
@@ -117,7 +114,7 @@
                                 }}</CHeading>
                                 <NuxtLink :to="'/children_topics/' + ct">
                                   <c-text
-                                    fontSize="xs"
+                                    font-size="xs"
                                     text-decoration="underline;"
                                     >> Go to keyword page
                                   </c-text></NuxtLink
@@ -179,6 +176,10 @@ export default {
     CHeading,
     CAccordion, CAccordionItem, CAccordionHeader, CAccordionPanel, CAccordionIcon,
 
+  },
+  transition: {
+    name: 'home',
+    mode: 'out-in'
   },
   data() {
       return {
