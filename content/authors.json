@@ -6,9 +6,9 @@
     "CitationNumber": 10001,
     "ResearchInterest": "some random stuff",
     "RelatedNotes": {
-      "machine_learning":{
-      "machine_learning_1": ["ml1_note2", "ml1_note3"],
-      "machine_learning_2": ["ml2_note1", "ml2_note2"]
+      "machine_learning": {
+        "machine_learning_1": ["ml1_note2", "ml1_note3"],
+        "machine_learning_2": ["ml2_note1", "ml2_note2"]
       }
     }
   },
@@ -19,10 +19,15 @@
     "CitationNumber": 1023401,
     "ResearchInterest": "some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff \n some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff \n some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff \n some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff \n some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff \n some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff some other random stuff \n some other random stuff some other random stuff",
     "RelatedNotes": {
-      "machine_learning":{
-      "machine_learning_1":["ml1_note1", "ml1_note2"],
-      "machine_learning_2":["ml2_note3", "ml2_note4"],
-      "machine_learning_3":["ml3_note1", "ml3_note2", "ml3_note3", "ml3_note4"]
+      "machine_learning": {
+        "machine_learning_1": ["ml1_note1", "ml1_note2"],
+        "machine_learning_2": ["ml2_note3", "ml2_note4"],
+        "machine_learning_3": [
+          "ml3_note1",
+          "ml3_note2",
+          "ml3_note3",
+          "ml3_note4"
+        ]
       }
     }
   },
@@ -33,7 +38,11 @@
     "CitationNumber": "N/A",
     "ResearchInterest": "the rest of random stuff",
     "RelatedNotes": {
-      "machine_learning":{"machine_learning_2":["ml2_note3", "ml2_note4"]},
-      "decision_making":{ "decision_making_1":["dm1_note1"], "decision_making_2":["dm2_note1"]}}
+      "machine_learning": { "machine_learning_2": ["ml2_note3", "ml2_note4"] },
+      "decision_making": {
+        "decision_making_1": ["dm1_note1"],
+        "decision_making_2": ["dm2_note1"]
+      }
+    }
   }
 }

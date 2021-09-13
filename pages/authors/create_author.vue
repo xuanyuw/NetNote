@@ -23,10 +23,10 @@
           <CHeading text-align="left" size="lg"> Organization</CHeading>
         </c-grid-item>
         <c-grid-item overflow="auto">
-          <c-input variant="outline" placeholder="Name" />
+          <c-input id="Name" variant="outline" placeholder="Name" />
         </c-grid-item>
         <c-grid-item overflow="auto">
-          <c-input variant="outline" placeholder="Organization" />
+          <c-input id="Org" variant="outline" placeholder="Organization" />
         </c-grid-item>
         <c-grid-item>
           <CHeading text-align="left" size="lg"> H-index</CHeading>
@@ -35,19 +35,21 @@
           <CHeading text-align="left" size="lg"> # of Citations</CHeading>
         </c-grid-item>
         <c-grid-item overflow="auto">
-          <c-input variant="outline" placeholder="H-index" />
+          <c-input id="Hidx" variant="outline" placeholder="H-index" />
         </c-grid-item>
         <c-grid-item overflow="auto">
-          <c-input variant="outline" placeholder="# of Citations" />
+          <c-input id="Cite" variant="outline" placeholder="# of Citations" />
         </c-grid-item>
         <c-grid-item col-span="2">
           <CHeading text-align="left" size="lg"> Research Interest</CHeading>
         </c-grid-item>
         <c-grid-item overflow="auto" col-span="2">
-          <c-textarea h="20vh" placeholder="Research Interest" />
+          <c-textarea id="RI" h="20vh" placeholder="Research Interest" />
         </c-grid-item>
       </c-grid>
-      <c-button variant-color="gray" m="10">Save Info</c-button>
+      <c-button variant-color="gray" m="10" @click="add_author"
+        >Save Info</c-button
+      >
     </CBox>
     <CBox
       d="flex"
@@ -88,6 +90,22 @@ export default {
           Authors: authors,
           show: true
       };
+  },
+  methods: {
+    add_author(event){
+      const key = document.getElementById("Name").value.replace(/ /g,"_")
+      console.log(document.getElementById("Hidx").value)
+      console.log(document.getElementById("Cite").value)
+      console.log(document.getElementById("RI").value)
+      this.authors[key] = {
+          Name: document.getElementById("Name").value,
+          Organization: document.getElementById("Org").value,
+          HIndex: document.getElementById("Hidx").value,
+          CitationNumber: document.getElementById("Cite").value,
+          ResearchInterest: document.getElementById("RI").value,
+      };
+      console.log(Object.keys(this.Authors))
+    }
   },
 }
 </script>
