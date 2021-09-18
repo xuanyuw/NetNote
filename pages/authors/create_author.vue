@@ -63,12 +63,16 @@
 </template>
 
 <script lang="js">
+
+// import * as fs from 'fs';
+
 import {
   CBox,
   CHeading,
   CInput, CTextarea,
   CButton
 } from '@chakra-ui/vue'
+
 
 import authors from '../../content/authors.json';
 
@@ -85,6 +89,10 @@ export default {
     name: 'home',
     mode: 'out-in'
   },
+  async asyncData ({ $axios }) {
+    const data = (await $axios.get('/api/content/authors.json')).data
+    return { data }
+  },
   data() {
       return {
           Authors: authors,
@@ -94,18 +102,20 @@ export default {
   methods: {
     add_author(event){
       const key = document.getElementById("Name").value.replace(/ /g,"_")
-      console.log(document.getElementById("Hidx").value)
-      console.log(document.getElementById("Cite").value)
-      console.log(document.getElementById("RI").value)
-      this.authors[key] = {
+      console.log(Object.keys(this.Authors))
+      // console.log(document.getElementById("Hidx").value)
+      // console.log(document.getElementById("Cite").value)
+      // console.log(document.getElementById("RI").value)
+      this.Authors[key] = {
           Name: document.getElementById("Name").value,
           Organization: document.getElementById("Org").value,
           HIndex: document.getElementById("Hidx").value,
           CitationNumber: document.getElementById("Cite").value,
           ResearchInterest: document.getElementById("RI").value,
       };
-      console.log(Object.keys(this.Authors))
+
     }
   },
+
 }
 </script>
