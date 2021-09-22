@@ -16,38 +16,47 @@
         overflow="auto"
         w="80vw"
       >
-        <c-grid-item>
-          <CHeading text-align="left" size="lg"> Name</CHeading>
+        <c-grid-item text-align="left">
+          <c-form-control is-required>
+            <c-form-label for="Name"> Name</c-form-label>
+            <c-input id="Name" v-model="author_name" placeholder="Name" />
+          </c-form-control>
         </c-grid-item>
-        <c-grid-item>
-          <CHeading text-align="left" size="lg"> Organization</CHeading>
+        <c-grid-item text-align="left">
+          <c-form-control is-required>
+            <c-form-label for="Org"> Organization</c-form-label>
+            <c-input id="Org" v-model="org" placeholder="Organization" />
+          </c-form-control>
         </c-grid-item>
-        <c-grid-item overflow="auto">
-          <c-input id="Name" variant="outline" placeholder="Name" />
+        <c-grid-item text-align="left">
+          <c-form-control>
+            <c-form-label for="Hidx"> H-index</c-form-label>
+            <c-input id="Hidx" placeholder="H-index" />
+          </c-form-control>
         </c-grid-item>
-        <c-grid-item overflow="auto">
-          <c-input id="Org" variant="outline" placeholder="Organization" />
+        <c-grid-item text-align="left">
+          <c-form-control>
+            <c-form-label for="Cite"> # of Citations</c-form-label>
+            <c-input id="Cite" placeholder="# of Citations" />
+          </c-form-control>
         </c-grid-item>
-        <c-grid-item>
-          <CHeading text-align="left" size="lg"> H-index</CHeading>
-        </c-grid-item>
-        <c-grid-item>
-          <CHeading text-align="left" size="lg"> # of Citations</CHeading>
-        </c-grid-item>
-        <c-grid-item overflow="auto">
-          <c-input id="Hidx" variant="outline" placeholder="H-index" />
-        </c-grid-item>
-        <c-grid-item overflow="auto">
-          <c-input id="Cite" variant="outline" placeholder="# of Citations" />
-        </c-grid-item>
-        <c-grid-item col-span="2">
-          <CHeading text-align="left" size="lg"> Research Interest</CHeading>
-        </c-grid-item>
-        <c-grid-item overflow="auto" col-span="2">
-          <c-textarea id="RI" h="20vh" placeholder="Research Interest" />
+        <c-grid-item text-align="left" col-span="2">
+          <c-form-control is-required>
+            <c-form-label for="RI"> Research Interest</c-form-label>
+            <c-textarea
+              id="RI"
+              h="20vh"
+              v-model="ri"
+              placeholder="Research Interest"
+            />
+          </c-form-control>
         </c-grid-item>
       </c-grid>
-      <c-button variant-color="gray" m="10" @click="add_author"
+      <c-button
+        variant-color="gray"
+        m="10"
+        :disabled="!(author_name && org && ri)"
+        @click="add_author"
         >Save Info</c-button
       >
     </CBox>
@@ -70,7 +79,9 @@ import {
   CBox,
   CHeading,
   CInput, CTextarea,
-  CButton
+  CButton,
+  CFormControl, CFormLabel,
+
 } from '@chakra-ui/vue'
 
 
@@ -83,29 +94,38 @@ export default {
     CBox,
     CHeading,
     CInput, CTextarea,
-    CButton
+    CButton,
+    CFormControl, CFormLabel,
+
   },
   transition: {
     name: 'home',
     mode: 'out-in'
   },
-  async asyncData ({ $axios }) {
-    const data = (await $axios.get('/api/content/authors.json')).data
-    return { data }
-  },
+  // async asyncData ({ $axios }) {
+  //   const data = (await $axios.get('/api/routes/update_author/authors.json'))
+  //   return { data }
+  // },
   data() {
       return {
           Authors: authors,
-          show: true
+          show: true,
+          author_name: "",
+          org:"",
+          ri:"",
       };
   },
+  // computed: {
+  //   verify(){
+  //     return document.getElementById("Name").value==="" && document.getElementById("Org").value==="" && document.getElementById("RI").value===""
+  //   },
+  // },
   methods: {
     add_author(event){
+
       const key = document.getElementById("Name").value.replace(/ /g,"_")
+
       console.log(Object.keys(this.Authors))
-      // console.log(document.getElementById("Hidx").value)
-      // console.log(document.getElementById("Cite").value)
-      // console.log(document.getElementById("RI").value)
       this.Authors[key] = {
           Name: document.getElementById("Name").value,
           Organization: document.getElementById("Org").value,
@@ -113,9 +133,11 @@ export default {
           CitationNumber: document.getElementById("Cite").value,
           ResearchInterest: document.getElementById("RI").value,
       };
+      const json = JSON.stringify(this.Authors);
+      console.log(json)
+
 
     }
-  },
-
+  }
 }
 </script>

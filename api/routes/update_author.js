@@ -2,9 +2,11 @@ const { Router } = require('express')
 
 const router = Router()
 
-router.get('/update_author', async function (req, res) {
-  const authors = require('./update_author/authors.json')
-  return res.json({ data: authors })
+const authors = require('./update_author/authors.json')
+
+router.get('/authors', async function (req, res) {
+  // const authors = require('./update_author/authors.json')
+  res.json(authors)
 })
 
 module.exports = router
