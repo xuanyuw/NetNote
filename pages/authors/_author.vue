@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="thisAuthor">
     <CBox text-align="center" h="30vh" bg="gray.50">
       <CHeading text-align="center" line-height="30vh" size="2xl">
         {{ thisAuthor.Name }}
@@ -162,9 +162,8 @@ import {
   CHeading,
   CAccordion, CAccordionItem, CAccordionHeader, CAccordionPanel, CAccordionIcon,
 
-} from '@chakra-ui/vue'
+} from '@chakra-ui/vue';
 
-import authors from '../../content/authors.json';
 import childrenTopics from '../../content/ctopics.json';
 import parentTopics from '../../content/ptopics.json';
 
@@ -183,10 +182,17 @@ export default {
   },
   data() {
       return {
-          thisAuthor: authors[this.$route.params.author],
+          thisAuthor: null,
           ChildrenTopics: childrenTopics,
           ParentTopics: parentTopics,
       };
   },
+  created() {
+    // const key = this.$route.params.author
+    // console.log('in author.vue')
+    this.$axios.$get(`/api/authors?id=${this.$route.params.author}`, {
+      responseType: 'json',
+    }).then(response => {this.thisAuthor = response});
+}
 }
 </script>

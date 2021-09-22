@@ -2,6 +2,8 @@ const express = require('express')
 
 // Create express instance
 const app = express()
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 // Require API routes
 const update_author = require('./routes/update_author')

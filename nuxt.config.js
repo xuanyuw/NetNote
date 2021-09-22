@@ -43,6 +43,12 @@ export default {
     // proxy: true
   },
 
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'http://localhost:3000/',
+    },
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   serverMiddleware: ['~/api/index.js'],

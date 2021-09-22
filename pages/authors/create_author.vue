@@ -19,7 +19,7 @@
         <c-grid-item text-align="left">
           <c-form-control is-required>
             <c-form-label for="Name"> Name</c-form-label>
-            <c-input id="Name" v-model="author_name" placeholder="Name" />
+            <c-input id="Name" v-model="name" placeholder="Name" />
           </c-form-control>
         </c-grid-item>
         <c-grid-item text-align="left">
@@ -31,13 +31,13 @@
         <c-grid-item text-align="left">
           <c-form-control>
             <c-form-label for="Hidx"> H-index</c-form-label>
-            <c-input id="Hidx" placeholder="H-index" />
+            <c-input id="Hidx" v-model="hidx" placeholder="H-index" />
           </c-form-control>
         </c-grid-item>
         <c-grid-item text-align="left">
           <c-form-control>
             <c-form-label for="Cite"> # of Citations</c-form-label>
-            <c-input id="Cite" placeholder="# of Citations" />
+            <c-input id="Cite" v-model="cite" placeholder="# of Citations" />
           </c-form-control>
         </c-grid-item>
         <c-grid-item text-align="left" col-span="2">
@@ -45,8 +45,8 @@
             <c-form-label for="RI"> Research Interest</c-form-label>
             <c-textarea
               id="RI"
-              h="20vh"
               v-model="ri"
+              h="20vh"
               placeholder="Research Interest"
             />
           </c-form-control>
@@ -55,7 +55,7 @@
       <c-button
         variant-color="gray"
         m="10"
-        :disabled="!(author_name && org && ri)"
+        :disabled="!(name && org && ri)"
         @click="add_author"
         >Save Info</c-button
       >
@@ -85,9 +85,6 @@ import {
 } from '@chakra-ui/vue'
 
 
-import authors from '../../content/authors.json';
-
-
 export default {
   name: 'ChildrenTopic',
   components: {
@@ -102,42 +99,38 @@ export default {
     name: 'home',
     mode: 'out-in'
   },
-  // async asyncData ({ $axios }) {
-  //   const data = (await $axios.get('/api/routes/update_author/authors.json'))
-  //   return { data }
-  // },
+
   data() {
       return {
-          Authors: authors,
+          newAuthor: {
+            key:"",
+            data: {},
+          },
           show: true,
-          author_name: "",
+          name: "",
           org:"",
           ri:"",
+          hidx:"",
+          cite:""
+
       };
   },
-  // computed: {
-  //   verify(){
-  //     return document.getElementById("Name").value==="" && document.getElementById("Org").value==="" && document.getElementById("RI").value===""
-  //   },
-  // },
   methods: {
     add_author(event){
-
       const key = document.getElementById("Name").value.replace(/ /g,"_")
+      this.newAuthor.key = key;
+      this.newAuthor.data = {
+        Name: this.name,
+        Organization: this.org,
+        HIndex: this.hidx,
+        CitationNumber: this.cite,
+        ResearchInterest: this.ri,
+      }
 
-      console.log(Object.keys(this.Authors))
-      this.Authors[key] = {
-          Name: document.getElementById("Name").value,
-          Organization: document.getElementById("Org").value,
-          HIndex: document.getElementById("Hidx").value,
-          CitationNumber: document.getElementById("Cite").value,
-          ResearchInterest: document.getElementById("RI").value,
-      };
-      const json = JSON.stringify(this.Authors);
-      console.log(json)
-
-
-    }
+      this.$axios.$post('/api/authors', this.newAuthor)
+      // await this.$axios.$get('/api/authors?name=author1')
+    },
   }
+
 }
 </script>
