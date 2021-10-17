@@ -5,22 +5,19 @@
         All Authors
       </CHeading>
     </CBox>
-    <c-list
-      styleType="disc"
-      justify-content="center"
-      text-align="left"
-      display="flex"
-      gridGap="2"
-      flex-direction="column"
-      flex-wrap="wrap"
-      h="50vh"
-      m="10"
-      overflow="auto"
-    >
-      <c-list-item v-for="(value, index) in allAuthors" :key="index">
+
+    <c-grid m="10" gap="6" align="center">
+      <c-grid-item v-for="(value, index) in allAuthors" :key="index">
         <NuxtLink :to="'/authors/' + index"> {{ value.Name }}</NuxtLink>
-      </c-list-item>
-    </c-list>
+        <c-button variant-color="green" size="sm" m="2"
+          ><NuxtLink :to="'/authors/update/' + index"
+            >Edit Info</NuxtLink
+          ></c-button
+        >
+        <c-button variant-color="red" size="sm" m="2">Delete</c-button>
+      </c-grid-item>
+    </c-grid>
+
     <CBox
       d="flex"
       flex-dir="column"
@@ -37,7 +34,9 @@
 
 import {
   CBox,
-  CHeading
+  CHeading,
+  CButton,
+  CGrid, CGridItem
 
 } from '@chakra-ui/vue';
 
@@ -46,7 +45,9 @@ import {
 export default {
   components: {
     CBox,
-    CHeading
+    CHeading,
+    CButton,
+    CGrid, CGridItem
   },
   transition: {
     name: 'home',
