@@ -127,8 +127,6 @@ import {
 import parentTopics from '../../content/ptopics.json';
 import childrenTopics from '../../content/ctopics.json';
 import CollapseItem from '../../components/CollapseItem.vue';
-import authors from '../../content/authors.json';
-
 
 export default {
   name: 'ChildrenTopic',
@@ -148,9 +146,16 @@ export default {
           ChildTopic: childrenTopics[this.$route.params.ctopic],
           ChildrenTopics: childrenTopics,
           ParentTopics: parentTopics,
-          Authors: authors,
+          Authors: {},
           show: true
       };
   },
+  created() {
+    // const key = this.$route.params.author
+    // console.log('in author.vue')
+    this.$axios.$get(`/api/all_authors`, {
+      responseType: 'json',
+    }).then(response => {this.Authors = response});
+  }
 }
 </script>

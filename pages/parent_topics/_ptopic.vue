@@ -54,9 +54,12 @@
           h="45vh"
         >
           <CList text-align="center" m="4">
-            <CListItem v-for="item in ParentTopic.RelatedAuthors" :key="item">
-              <NuxtLink :to="'/authors/' + item">
-                {{ Authors[item]['Name'] }}
+            <CListItem v-for="(value, index) in allAuthors" :key="index">
+              <NuxtLink
+                :to="'/authors/' + index"
+                v-if="ParentTopic.RelatedAuthors.includes(index)"
+              >
+                {{ value.Name }}
               </NuxtLink>
             </CListItem>
           </CList>
@@ -84,7 +87,6 @@ import {
 
 import parentTopics from '../../content/ptopics.json';
 import childrenTopics from '../../content/ctopics.json';
-import authors from '../../content/authors.json';
 
 
 export default {
@@ -102,8 +104,14 @@ export default {
       return {
           ParentTopic: parentTopics[this.$route.params.ptopic],
           ChildrenTopic: childrenTopics,
-          Authors: authors,
+          allAuthors: {},
       };
   },
+created() {    // const key = this.$route.params.author
+    // console.log('in author.vue')
+    this.$axios.$get(`/api/all_authors`, {
+      responseType: 'json',
+    }).then(response => {this.allAuthors = response});
+  }
 }
 </script>

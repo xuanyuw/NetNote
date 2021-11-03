@@ -38,7 +38,9 @@
     "CitationNumber": "N/A",
     "ResearchInterest": "the rest of random stuff",
     "RelatedNotes": {
-      "machine_learning": { "machine_learning_2": ["ml2_note3", "ml2_note4"] },
+      "machine_learning": {
+        "machine_learning_2": ["ml2_note3", "ml2_note4"]
+      },
       "decision_making": {
         "decision_making_1": ["dm1_note1"],
         "decision_making_2": ["dm2_note1"]
@@ -56,7 +58,7 @@
     "Name": "Author 1",
     "Organization": "Org1",
     "HIndex": 20,
-    "CitationNumber": 10001,
-    "ResearchInterest": "some random stuffdalao"
+    "CitationNumber": "100",
+    "ResearchInterest": "some random stuff"
   }
 }

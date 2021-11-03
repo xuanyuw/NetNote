@@ -6,11 +6,13 @@ const router = Router()
 const authors = require('./update_author/authors.json')
 
 router.get('/authors', async function (req, res) {
-  console.log(authors[req.query.id])
+  // console.log(authors[req.query.id])
   res.send(authors[req.query.id])
 })
 
 router.get('/all_authors', async function (req, res) {
+  // console.log(authors)
+  console.log('get all authors')
   res.send(authors)
 })
 
