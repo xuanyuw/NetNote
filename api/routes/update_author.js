@@ -12,7 +12,6 @@ router.get('/authors', async function (req, res) {
 
 router.get('/all_authors', async function (req, res) {
   // console.log(authors)
-  console.log('get all authors')
   res.send(authors)
 })
 
@@ -37,8 +36,19 @@ router.post('/authors', async function (req, res) {
 })
 
 router.delete('/authors', async function (req, res) {
-  key = req.query.id
-  delete authors[key]
+  // key = req.query.id
+  delete authors[req.body['key']]
+  fs.writeFile(
+    './api/routes/update_author/authors.json',
+    JSON.stringify(authors),
+    (err) => {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('File written successfully\n')
+      }
+    }
+  )
 })
 
 module.exports = router

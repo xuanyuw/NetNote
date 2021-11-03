@@ -14,7 +14,13 @@
             >Edit Info</NuxtLink
           ></c-button
         >
-        <c-button variant-color="red" size="sm" m="2">Delete</c-button>
+        <c-button
+          variant-color="red"
+          size="sm"
+          m="2"
+          @click="delete_author(index)"
+          >Delete {{ index }}</c-button
+        >
       </c-grid-item>
     </c-grid>
 
@@ -56,12 +62,18 @@ export default {
   data() {return{
       allAuthors: {},
   }},
-    created() {
+  created() {
     // const key = this.$route.params.author
     // console.log('in author.vue')
     this.$axios.$get(`/api/all_authors`, {
       responseType: 'json',
     }).then(response => {this.allAuthors = response});
-}
+  },
+  methods:{
+    delete_author(index){
+      this.$axios.$delete('/api/authors', {data:{key:index}});
+    },
+  }
+
 }
 </script>

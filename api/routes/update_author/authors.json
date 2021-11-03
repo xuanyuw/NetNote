@@ -53,12 +53,5 @@
     "HIndex": "32",
     "CitationNumber": "3000",
     "ResearchInterest": "something"
-  },
-  "Author_1": {
-    "Name": "Author 1",
-    "Organization": "Org1",
-    "HIndex": 20,
-    "CitationNumber": "100",
-    "ResearchInterest": "some random stuff"
   }
 }
