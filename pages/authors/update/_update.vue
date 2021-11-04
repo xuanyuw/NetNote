@@ -58,9 +58,41 @@
         variant-color="gray"
         m="10"
         :disabled="!(name && org && ri)"
-        @click="add_author"
+        @click="
+          add_author()
+          open()
+        "
         >Update Info</c-button
       >
+      <c-modal
+        :is-open="isOpen"
+        :on-close="close"
+        :closeOnOverlayClick="false"
+        is-centered
+      >
+        <c-modal-content ref="content">
+          <c-modal-header>Info Saved Successfully! </c-modal-header>
+          <c-modal-body>
+            <Lorem add="2s" />
+          </c-modal-body>
+          <c-modal-footer>
+            <c-button-group size="xs">
+              <c-button
+                ><NuxtLink :to="'/authors/' + updatedAuthor.key">
+                  Author Page</NuxtLink
+                ></c-button
+              >
+              <c-button>
+                <NuxtLink :to="'/authors/all_authors'"> Author List </NuxtLink>
+              </c-button>
+              <c-button>
+                <NuxtLink :to="'/'"> Home</NuxtLink>
+              </c-button>
+            </c-button-group>
+          </c-modal-footer>
+        </c-modal-content>
+        <c-modal-overlay />
+      </c-modal>
     </CBox>
     <CBox
       d="flex"
@@ -111,7 +143,8 @@ export default {
         org:"",
         ri:"",
         hidx:"",
-        cite:""
+        cite:"",
+        isOpen: false,
         }
   },
   created() {
@@ -141,6 +174,15 @@ export default {
       }
 
       this.$axios.$post('/api/authors', this.updatedAuthor)
+    },
+    open() {
+      this.isOpen = true
+    },
+    close() {
+      this.isOpen = false
+    },
+    reloadPage() {
+      window.location.reload();
     },
   },
 
