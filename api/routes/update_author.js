@@ -15,6 +15,10 @@ router.get('/all_authors', async function (req, res) {
   res.send(authors)
 })
 
+router.get('/author_ids', async function (req, res) {
+  res.send(Object.keys(authors))
+})
+
 router.post('/authors', async function (req, res) {
   const newAuthor = req.body
   authors[newAuthor.key] = newAuthor.data

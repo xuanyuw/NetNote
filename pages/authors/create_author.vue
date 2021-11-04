@@ -152,7 +152,13 @@ export default {
           hidx:"",
           cite:"",
           isOpen: false,
+          existingAuthorIds: [],
       };
+  },
+  created() {
+    this.$axios.$get(`/api/author_ids`, {
+      responseType: 'json',
+    }).then(response => {this.existingAuthorIds = response});
   },
   methods: {
     add_author(){
