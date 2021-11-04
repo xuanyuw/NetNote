@@ -14,13 +14,52 @@
             >Edit Info</NuxtLink
           ></c-button
         >
-        <c-button
-          variant-color="red"
-          size="sm"
-          m="2"
-          @click="delete_author(index)"
-          >Delete {{ index }}</c-button
+        <c-popover
+          initialFocusRef="#closeButton"
+          placement="bottom"
+          v-slot="{ onClose }"
         >
+          <c-popover-trigger>
+            <c-button variant-color="red" size="sm" m="2">Delete</c-button>
+          </c-popover-trigger>
+          <c-popover-content
+            z-index="4"
+            color="black"
+            background-color="#DCDCDC"
+            border-color="#DCDCDC"
+          >
+            <c-popover-header pt="4" font-weight="bold" border="0">
+              Deleting this Author Info
+            </c-popover-header>
+            <c-popover-arrow color="#DCDCDC" />
+            <c-popover-body> This operation is not reversible. </c-popover-body>
+            <c-popover-footer
+              border="0"
+              d="flex"
+              align-items="center"
+              justify-content="space-between"
+              pb="4"
+            >
+              <c-button-group size="sm">
+                <c-button
+                  variant-color="red"
+                  @click="
+                    delete_author(index)
+                    reloadPage()
+                  "
+                  >Delete</c-button
+                >
+                <c-button
+                  id="closeButton"
+                  variant-color="green"
+                  @click="onClose"
+                >
+                  Cancel
+                </c-button>
+              </c-button-group>
+            </c-popover-footer>
+          </c-popover-content>
+        </c-popover>
       </c-grid-item>
     </c-grid>
 
@@ -30,6 +69,7 @@
       justify-content="center"
       text-align="center"
     >
+      <NuxtLink :to="'/authors/create_author'"> Create an author </NuxtLink>
       <NuxtLink :to="'/'"> Home</NuxtLink>
     </CBox>
   </div>
@@ -42,7 +82,14 @@ import {
   CBox,
   CHeading,
   CButton,
-  CGrid, CGridItem
+  CGrid, CGridItem,
+  CPopover,
+  CPopoverTrigger,
+  CPopoverContent,
+  CPopoverHeader,
+  CPopoverBody,
+  CPopoverFooter,
+  CPopoverArrow,
 
 } from '@chakra-ui/vue';
 
@@ -53,7 +100,14 @@ export default {
     CBox,
     CHeading,
     CButton,
-    CGrid, CGridItem
+    CGrid, CGridItem,
+    CPopover,
+    CPopoverTrigger,
+    CPopoverContent,
+    CPopoverHeader,
+    CPopoverBody,
+    CPopoverFooter,
+    CPopoverArrow,
   },
   transition: {
     name: 'home',
@@ -72,6 +126,9 @@ export default {
   methods:{
     delete_author(index){
       this.$axios.$delete('/api/authors', {data:{key:index}});
+    },
+    reloadPage() {
+      window.location.reload();
     },
   }
 

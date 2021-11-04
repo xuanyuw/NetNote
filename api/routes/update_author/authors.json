@@ -46,12 +46,5 @@
         "decision_making_2": ["dm2_note1"]
       }
     }
-  },
-  "author4": {
-    "Name": "author4",
-    "Organization": "org",
-    "HIndex": "32",
-    "CitationNumber": "3000",
-    "ResearchInterest": "something"
   }
 }
