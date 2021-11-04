@@ -25,9 +25,17 @@
                 {{ ParentTopics[item].Title }}
               </NuxtLink>
             </CListItem>
+            <CListItem>
+              <NuxtLink :to="'/authors/create_author'">
+                Create an author
+              </NuxtLink>
+            </CListItem>
+            <CListItem>
+              <NuxtLink :to="'/authors/all_authors'">
+                View author list
+              </NuxtLink>
+            </CListItem>
           </CList>
-          <NuxtLink :to="'/authors/create_author'"> Create an author </NuxtLink>
-          <NuxtLink :to="'/authors/all_authors'"> View author list </NuxtLink>
         </Cbox>
       </CFlex>
     </CBox>

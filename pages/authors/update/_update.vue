@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     add_author(event){
-      const key = document.getElementById("Name").value.replace(/ /g,"_")
+      const key = document.getElementById("Name").value.toLowerCase().replace(/ /g,"_")
       this.updatedAuthor.key = key;
       this.updatedAuthor.data = {
         Name: this.name,

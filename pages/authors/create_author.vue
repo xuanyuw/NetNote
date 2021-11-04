@@ -56,9 +56,48 @@
         variant-color="gray"
         m="10"
         :disabled="!(name && org && ri)"
-        @click="add_author"
+        @click="
+          add_author()
+          open()
+        "
         >Save Info</c-button
       >
+      <c-modal
+        :is-open="isOpen"
+        :on-close="close"
+        :closeOnOverlayClick="false"
+        is-centered
+      >
+        <c-modal-content ref="content">
+          <c-modal-header>Info Saved Successfully! </c-modal-header>
+          <c-modal-body>
+            <Lorem add="2s" />
+          </c-modal-body>
+          <c-modal-footer>
+            <c-button-group size="xs">
+              <c-button
+                ><NuxtLink :to="'/authors/' + newAuthor.key">
+                  Author Page</NuxtLink
+                ></c-button
+              >
+              <c-button>
+                <NuxtLink :to="'/authors/all_authors'"> Author List </NuxtLink>
+              </c-button>
+              <c-button>
+                <NuxtLink :to="'/'"> Home</NuxtLink>
+              </c-button>
+              <c-button
+                @click="
+                  close()
+                  reloadPage()
+                "
+                >Add Another</c-button
+              >
+            </c-button-group>
+          </c-modal-footer>
+        </c-modal-content>
+        <c-modal-overlay />
+      </c-modal>
     </CBox>
     <CBox
       d="flex"
@@ -111,13 +150,13 @@ export default {
           org:"",
           ri:"",
           hidx:"",
-          cite:""
-
+          cite:"",
+          isOpen: false,
       };
   },
   methods: {
-    add_author(event){
-      const key = document.getElementById("Name").value.replace(/ /g,"_")
+    add_author(){
+      const key = document.getElementById("Name").value.toLowerCase().replace(/ /g,"_")
       this.newAuthor.key = key;
       this.newAuthor.data = {
         Name: this.name,
@@ -129,6 +168,15 @@ export default {
 
       this.$axios.$post('/api/authors', this.newAuthor)
       // await this.$axios.$get('/api/authors?name=author1')
+    },
+     open() {
+      this.isOpen = true
+    },
+    close() {
+      this.isOpen = false
+    },
+    reloadPage() {
+      window.location.reload();
     },
   }
 

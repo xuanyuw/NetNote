@@ -82,7 +82,7 @@
           col-span="3"
         >
           <c-box w="25vw" m="3">
-            <c-box>
+            <c-box v-if="thisAuthor.RelatedNotes">
               <c-tabs variant="soft-rounded" variant-color="gray" mt="4" mb="4">
                 <c-tab-list>
                   <c-tab
@@ -141,6 +141,7 @@
                 </c-tab-panels>
               </c-tabs>
             </c-box>
+            <div v-else>No Related Notes Yet.</div>
           </c-box>
         </c-grid-item>
       </c-grid>
