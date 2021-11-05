@@ -56,14 +56,50 @@
         variant-color="gray"
         m="10"
         :disabled="!(name && org && ri)"
-        @click="
-          add_author()
-          open()
-        "
+        @click="openConf()"
         >Save Info</c-button
       >
+
       <c-modal
-        :is-open="isOpen"
+        :is-open="isOpenConf"
+        :on-close="close"
+        :closeOnOverlayClick="false"
+        is-centered
+      >
+        <c-modal-content ref="content">
+          <c-modal-header>
+            This author is in your database already. Update?
+          </c-modal-header>
+          <c-modal-body>
+            <Lorem add="2s" />
+          </c-modal-body>
+          <c-modal-footer>
+            <c-button-group size="xs">
+              <c-button
+                @click="
+                  add_author()
+                  openSucc()
+                "
+                variant-color="green"
+              >
+                Yes
+              </c-button>
+              <c-button
+                @click="
+                  close()
+                  reloadPage()
+                "
+                variant-color="red"
+                >No</c-button
+              >
+            </c-button-group>
+          </c-modal-footer>
+        </c-modal-content>
+        <c-modal-overlay />
+      </c-modal>
+
+      <c-modal
+        :is-open="isOpenSucc"
         :on-close="close"
         :closeOnOverlayClick="false"
         is-centered
@@ -151,7 +187,8 @@ export default {
           ri:"",
           hidx:"",
           cite:"",
-          isOpen: false,
+          isOpenSucc: false,
+          isOpenConf: false,
           existingAuthorIds: [],
       };
   },
@@ -175,11 +212,24 @@ export default {
       this.$axios.$post('/api/authors', this.newAuthor)
       // await this.$axios.$get('/api/authors?name=author1')
     },
-     open() {
-      this.isOpen = true
+     openConf() {
+       const key = document.getElementById("Name").value.toLowerCase().replace(/ /g,"_")
+       if (this.existingAuthorIds.includes(key)){
+         this.isOpenConf = true
+       } else {
+         this.isOpenSucc = true
+       }
+    },
+    openSucc(){
+      this.isOpenConf = false;
+      this.isOpenSucc = true;
     },
     close() {
-      this.isOpen = false
+      if (this.isOpenConf ){
+        this.isOpenConf = false
+      } else if (this.isOpenSucc) {
+        this.isOpenSucc = false
+      }
     },
     reloadPage() {
       window.location.reload();
