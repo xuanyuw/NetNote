@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const router = Router()
 
-const authors = require('./update_author/authors.json')
+const authors = require('./author/authors.json')
 
 router.get('/authors', async function (req, res) {
   // console.log(authors[req.query.id])
@@ -26,7 +26,7 @@ router.post('/authors', async function (req, res) {
   console.log(authors[newAuthor.key])
   console.log(req.body)
   fs.writeFile(
-    './api/routes/update_author/authors.json',
+    './api/routes/author/authors.json',
     JSON.stringify(authors),
     (err) => {
       if (err) {
@@ -43,7 +43,7 @@ router.delete('/authors', async function (req, res) {
   // key = req.query.id
   delete authors[req.body['key']]
   fs.writeFile(
-    './api/routes/update_author/authors.json',
+    './api/routes/author/authors.json',
     JSON.stringify(authors),
     (err) => {
       if (err) {

@@ -59,7 +59,7 @@
         m="10"
         :disabled="!(name && org && ri)"
         @click="
-          add_author()
+          addAuthor()
           open()
         "
         >Update Info</c-button
@@ -162,7 +162,7 @@ export default {
       });
   },
   methods: {
-    add_author(event){
+    addAuthor(event){
       const key = document.getElementById("Name").value.toLowerCase().replace(/ /g,"_")
       this.updatedAuthor.key = key;
       this.updatedAuthor.data = {
