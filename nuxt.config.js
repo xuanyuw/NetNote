@@ -1,3 +1,5 @@
+import Mode from 'frontmatter-markdown-loader/mode'
+const path = require('path')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -43,6 +45,13 @@ export default {
     // proxy: true
   },
 
+  // markdownit: {
+  //   preset: 'default',
+  //   linkify: true,
+  //   breaks: true,
+  //   use: ['markdown-it-div', 'markdown-it-attrs'],
+  // },
+
   publicRuntimeConfig: {
     axios: {
       baseURL: 'http://localhost:3000/',
@@ -50,6 +59,22 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, ctx) {
+      // add frontmatter-markdown-loader
+      config.module.rules.push({
+        test: /\.md$/,
+        include: path.resolve(__dirname, 'content'),
+        loader: 'frontmatter-markdown-loader',
+        options: {
+          mode: [Mode.VUE_COMPONENT, Mode.META],
+        },
+        markdown(body) {
+          let md = buildRenderer()
+          return md.render(body)
+        },
+      })
+    },
+  },
   serverMiddleware: ['~/api/index.js'],
 }

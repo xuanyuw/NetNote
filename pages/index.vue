@@ -36,6 +36,11 @@
               </NuxtLink>
             </CListItem>
           </CList>
+          <ul>
+            <li v-for="post in posts" :key="post.attributes.author">
+              <NuxtLink :to="getPermalink(post)">{{ post }}</NuxtLink>
+            </li>
+          </ul>
         </Cbox>
       </CFlex>
     </CBox>
@@ -68,12 +73,29 @@ export default {
     name: 'home',
     mode: 'out-in'
   },
+
+  asyncData() {
+    const resolve = require.context("~/content/", true, /\.md$/);
+    const imports = resolve.keys().map(key => {
+      const [, ] = key.match(/\/(.+)\.md$/);
+      return resolve(key);
+    });
+    return {
+      posts: imports
+    };
+  },
   data () {
     return {
       ParentTopicKeys: Object.keys(parentTopics),
       ParentTopics: parentTopics,
+      prefix: 'content'
     }
-  }
+  },
+  methods: {
+    getPermalink(post) {
+        return  `${this.prefix}/${post.meta.resourcePath.split('\\').pop().split('/').pop().split('.')[0]}`;
+    }
+  },
 }
 </script>
 
