@@ -39,6 +39,7 @@
           <ul>
             <li v-for="post in posts" :key="post.attributes.author">
               <NuxtLink :to="`/articles/${post.key}`">{{ post.key }}</NuxtLink>
+              <!-- <a :href="`/articles/${post.key}`">{{ post.key }}</a> -->
             </li>
           </ul>
         </CBox>
@@ -78,7 +79,7 @@ export default {
     const resolve = require.context("~/content/", true, /\.md$/);
     const imports = resolve.keys().map(key => {
       const [, ] = key.match(/\/(.+)\.md$/);
-      return {...resolve(key), key:key.slice(0, -3)};
+      return {...resolve(key), key:key.slice(2, -3)};
     });
     return {
       posts: imports
