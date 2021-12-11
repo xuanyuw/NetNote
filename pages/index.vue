@@ -38,7 +38,7 @@
           </CList>
           <ul>
             <li v-for="post in posts" :key="post.attributes.author">
-              <NuxtLink :to="getPermalink(post)">{{ post }}</NuxtLink>
+              <NuxtLink :to="`/articles/${post.key}`">{{ post.key }}</NuxtLink>
             </li>
           </ul>
         </CBox>
@@ -78,7 +78,7 @@ export default {
     const resolve = require.context("~/content/", true, /\.md$/);
     const imports = resolve.keys().map(key => {
       const [, ] = key.match(/\/(.+)\.md$/);
-      return resolve(key);
+      return {...resolve(key), key:key.slice(0, -3)};
     });
     return {
       posts: imports
@@ -92,9 +92,7 @@ export default {
     }
   },
   methods: {
-    getPermalink(post) {
-        return  `${this.prefix}/${post.meta.resourcePath.split('\\').pop().split('/').pop().split('.')[0]}`;
-    }
+
   },
 }
 </script>

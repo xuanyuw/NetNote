@@ -1,4 +1,5 @@
 import Mode from 'frontmatter-markdown-loader/mode'
+import { buildRenderer } from './utils/markdown_renderer'
 const path = require('path')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -62,18 +63,24 @@ export default {
   build: {
     extend(config, ctx) {
       // add frontmatter-markdown-loader
-      config.module.rules.push({
-        test: /\.md$/,
-        include: path.resolve(__dirname, 'content'),
-        loader: 'frontmatter-markdown-loader',
-        options: {
-          mode: [Mode.VUE_COMPONENT, Mode.META],
+      config.module.rules.push(
+        {
+          test: /\.md$/,
+          include: path.resolve(__dirname, 'content'),
+          loader: 'frontmatter-markdown-loader',
+          options: {
+            mode: [Mode.VUE_RENDER_FUNCTIONS, Mode.VUE_COMPONENT],
+            markdown(body) {
+              let md = buildRenderer()
+              return md.render(body)
+            },
+          },
         },
-        markdown(body) {
-          let md = buildRenderer()
-          return md.render(body)
-        },
-      })
+        {
+          test: /\.ya?ml$/,
+          loader: 'json-loader!yaml-loader',
+        }
+      )
     },
   },
   serverMiddleware: ['~/api/index.js'],

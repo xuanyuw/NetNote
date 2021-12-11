@@ -6,7 +6,7 @@ topic: machine learning"
 
 # Testing Testing
 
-rose is red
+**rose is red**
 violet is blue
-I don't want to work,
+~~I don't want to work,~~
 and neither do you.
