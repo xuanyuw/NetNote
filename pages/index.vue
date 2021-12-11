@@ -15,7 +15,7 @@
             <CIconButton aria-label="Search database" icon="arrow-forward" />
           </CInputRightElement>
         </CInputGroup>
-        <Cbox mb="4">
+        <CBox mb="4">
           <CHeading size="lg" mb="4">
             Or choose from the following parent topics</CHeading
           >
@@ -41,7 +41,7 @@
               <NuxtLink :to="getPermalink(post)">{{ post }}</NuxtLink>
             </li>
           </ul>
-        </Cbox>
+        </CBox>
       </CFlex>
     </CBox>
   </div>
