@@ -1,8 +1,10 @@
 <template>
-  <CBox d="flex" flex-dir="column" justify-content="center" text-align="center">
-    <CHeading>{{ author }}</CHeading>
-    <component :is="postComponent" class="content mx-5 markdown-body" />
-  </CBox>
+  <div>
+    <Toolbar></Toolbar>
+    <CBox justify-content="center" text-align="center" pt="12vh">
+      <component :is="postComponent" class="content mx-5 markdown-body" />
+    </CBox>
+  </div>
 </template>
 
 <script>
